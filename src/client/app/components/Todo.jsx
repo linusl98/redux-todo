@@ -4,15 +4,27 @@ const propTypes = {};
 
 const defaultProps = {};
 
+
+let input = '';
+
+function handleInputChange(event) {
+  input = event.target.value;
+}
+
+
 function Todo(props) {
   return (
     <div className="container">
       <h1 className="todo-title">Todos</h1>
       <ul className="todo-list">
-        {/* {this.props.todos.map((todo) => {
-          <li className="todo">{todo.text}</li>;
-        })} */}
+        {props.todos.map(todo => (
+          <li className="todo" key={todo.id}>{todo.text}</li>
+          ))}
       </ul>
+      <div className="add-todo">
+        <input className="add-todo__input" onChange={handleInputChange} type="text" />
+        <button onClick={props.addTodo(input)}>+</button>
+      </div>
       <style jsx>{`
 
         .container {
@@ -38,6 +50,19 @@ function Todo(props) {
           width: 100%;
           overflow-x: hidden;
           margin-top: 2rem;
+        }
+
+        .add-todo {
+          position: relative;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          &__input {
+            text-align: center;
+            color: #fafafa;
+            line-height: 1;
+            font-size: 150%;
+
+          }
         }
 
         .todo {
