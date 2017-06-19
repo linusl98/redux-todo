@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import FilterLink from '../containers/filterLink.jsx';
+import FilterLink from '../containers/FilterLink.jsx';
 
 const propTypes = {};
 

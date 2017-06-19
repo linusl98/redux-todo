@@ -1,23 +1,26 @@
-const todoReducer = (state, action) => {
+const todoReducer = (state = [], action) => {
   switch (action.type) {
-    case 'ADD':
-      state = {
+    case 'ADD_TODO':
+      return [
         ...state,
-        todos: [...state.todos, action.payload],
-      };
-      break;
-    case 'REMOVE':
-      break;
-    case 'CLEAR':
-      state = {
-        todos: [],
-      };
-      nextTodoID = 0;
-      break;
-    case 'TOGGLE':
-      break;
+        {
+          id: action.id,
+          text: action.text,
+          completed: false,
+        },
+      ];
+    case 'CLEAR_COMPLETED':
+      return state.filter(todo =>
+      todo.completed === false);
+    case 'CLEAR_ALL':
+      return [];
+    case 'TOGGLE_TODO':
+      return state.map(todo =>
+      (action.id === todo.id)
+      ? { ...todo, completed: !todo.completed } : todo);
+    default:
+      return state;
   }
-  return state;
 };
 
 export default todoReducer;

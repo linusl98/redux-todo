@@ -1,11 +1,20 @@
 import React, { PropTypes } from 'react';
 
-import Todo from './Todo-rev2.jsx';
-const propTypes = {};
+import Todo from './Todo.jsx';
+const propTypes = {
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
+    }).isRequired,
+  ).isRequired,
+  onTodoClick: PropTypes.func.isRequired,
+};
 
 const defaultProps = {};
 
-function TodoList(todos, onTodoClick) {
+function TodoList({ todos, onTodoClick }) {
   return (
     <ul>
       {todos.map(todo =>

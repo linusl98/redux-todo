@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions/todoActions.jsx';
+import { addTodo, clearAllTodo, clearCompletedTodos } from '../actions/index.jsx';
+
 
 let AddTodo = ({ dispatch }) => {
   let input;
@@ -24,6 +25,20 @@ let AddTodo = ({ dispatch }) => {
         />
         <button type="submit">
           Add Todo
+        </button>
+        <button
+          onClick={() => {
+            dispatch(clearAllTodo());
+          }}
+        >
+          Clear all
+        </button>
+        <button
+          onClick={() => {
+            dispatch(clearCompletedTodos());
+          }}
+        >
+          Clear completed
         </button>
       </form>
     </div>
